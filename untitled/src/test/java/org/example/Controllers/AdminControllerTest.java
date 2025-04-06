@@ -19,18 +19,28 @@ class AdminControllerTest {
     AdminControllerTest() throws FileNotFoundException {
     }
 
+    /**
+     * Test to verify if the strings have spaces (teste have spaces)
+     */
     @Test
     public void stringHaveSpacesTest(){
         assertTrue(adminController.stringHaveSpaces("Tem espaços"));
         assertTrue(adminController.stringHaveSpaces("Mas isto tambem tem espaços"));
     }
 
+    /**
+     * Test to verify if the strings have spaces (teste have no spaces)
+     */
     @Test
     public void stringNotHaveSpacesTest(){
         assertFalse(adminController.stringHaveSpaces("NaoTemEspaços"));
         assertFalse(adminController.stringHaveSpaces("MasIstoTambemNaoTemEspaços"));
     }
 
+    /**
+     * Test if a new user is created in the file, and if the return of the function is true
+     * @throws FileNotFoundException
+     */
     @Test
     void createNewUserTest() throws FileNotFoundException {
 
@@ -44,6 +54,10 @@ class AdminControllerTest {
 
     }
 
+    /**
+     * Test if a new user is not created in the file, and if the return of the function is false
+     * @throws FileNotFoundException
+     */
     @Test
     void createNewUserFailTypeTest() throws FileNotFoundException {
 
@@ -61,6 +75,10 @@ class AdminControllerTest {
 
     }
 
+    /**
+     * Test if a new user is not created in the file with empety estrings, and if the return of the function is false
+     * @throws FileNotFoundException
+     */
     @Test
     void createNewUserEmpetyStringsTest() throws FileNotFoundException {
 
@@ -79,7 +97,10 @@ class AdminControllerTest {
     }
 
 
-
+    /**
+     * Clean the test login file to be able to execut the test more than one time
+     * @throws FileNotFoundException
+     */
     @AfterAll
     static void tearDown() throws FileNotFoundException {
 

@@ -11,12 +11,19 @@ class LoginControllerTest {
 
     LoginController loginController;
 
+    /**
+     * Create an engineer controller with all it needs to work
+     * @throws FileNotFoundException
+     */
     @BeforeEach
     void setUp() throws FileNotFoundException {
         this.loginController = new LoginController("src/main/resources/Cesaeland_logins.csv");
     }
 
-
+    /**
+     * Test if the function can read and verify the type of the account for admins
+     * @throws FileNotFoundException
+     */
     @Test
     public void aprovedAdminLoginTest() throws FileNotFoundException {
         String access = loginController.accessType("a","a");
@@ -26,6 +33,10 @@ class LoginControllerTest {
         assertEquals("ADMIN", access);
     }
 
+    /**
+     * Test if the function can read and verify the type of the account for engineers
+     * @throws FileNotFoundException
+     */
     @Test
     public void aprovedEnginerLoginTest() throws FileNotFoundException {
         String access = loginController.accessType("e","e");
@@ -35,12 +46,25 @@ class LoginControllerTest {
         assertEquals("ENG", access);
     }
 
+    /**
+     * Test if the function can read and verify the type of the account for non-existent accounts
+     * @throws FileNotFoundException
+     */
     @Test
     public void ReprovedLoginTest() throws FileNotFoundException {
         String access = loginController.accessType("imAadmin","StrongPassword9");
         assertEquals("ERROR", access);
 
+        access = loginController.accessType("a","StrongPassword9");
+        assertEquals("ERROR", access);
+
         access = loginController.accessType("Destro","camomila");
         assertEquals("ERROR", access);
+
+        access = loginController.accessType("Destro","a");
+        assertEquals("ERROR", access);
+
+        access = loginController.accessType("a","a");
+        assertEquals("Admin", access);
     }
 }

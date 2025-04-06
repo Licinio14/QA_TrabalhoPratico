@@ -14,14 +14,21 @@ class EngineerControllerTest {
     private EngineerController engineerController;
     private EngineerController engineerControllerControl;
 
+    /**
+     * Create a engineer controller with all it needs to work
+     * @throws FileNotFoundException
+     */
     @BeforeEach
     void setUp() throws FileNotFoundException {
         engineerController = new EngineerController("src/test/resources/Cesaeland_atracoes_engineer.csv","src/test/resources/Cesaeland_vendas.csv");
         engineerControllerControl = new EngineerController("src/test/resources/Cesaeland_atracoes_engineer_control.csv","src/test/resources/Cesaeland_vendas_control.csv");
     }
 
+    /**
+     * Test if the function to get the attraction o need maintenance, show the results correctly
+     */
     @Test
-    void getAtractionsNeedManutenanceTest() {
+    void getAttractionsNeedMaintenanceTest() {
         ArrayList<String> test = engineerController.getNextManutenance();
 
         assertEquals("\u001B[0;93mID: 2\t|\tCasa Assombrada de Projeto Final\t|\tManutenance needed in: 49 tickes!\u001B[0m", test.get(0));
@@ -35,6 +42,9 @@ class EngineerControllerTest {
         assertEquals("\u001B[0;93mID: 10\t|\tLabirinto do Trabalho em Equipa\t|\tManutenance needed in: 45 tickes!\u001B[0m", testControl.get(2));
     }
 
+    /**
+     * Test if the function to get the attraction o need maintenance, throws the right expedition
+     */
     @Test
     void getAtractionsNeedManutenanceNoFileTest() {
         assertThrows(FileNotFoundException.class, () -> {engineerController = new EngineerController("src/test/resources/No_File.csv","src/test/resources/Cesaeland_vendas.csv");});
@@ -42,6 +52,9 @@ class EngineerControllerTest {
         assertThrows(FileNotFoundException.class, () -> {engineerController = new EngineerController("src/test/resources/No_File.csv","src/test/resources/No_File.csv");});
     }
 
+    /**
+     * Test if the function to get the attraction o need maintenance, throws the right expedition when the file is empty
+     */
     @Test
     void getAtractionsNeedManutenanceFileEmpetyTest() {
 

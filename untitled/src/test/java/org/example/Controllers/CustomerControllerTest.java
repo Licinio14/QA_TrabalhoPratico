@@ -15,12 +15,19 @@ class CustomerControllerTest {
     private CustomerController customerController;
     private CustomerController customerControllerControl;
 
+    /**
+     * Creat the links needed for the tests
+     * @throws FileNotFoundException
+     */
     @BeforeEach
     void setUp() throws FileNotFoundException {
         customerController = new CustomerController("src/test/resources/Cesaeland_atracoes.csv","src/test/resources/Cesaeland_vendas.csv");
         customerControllerControl = new CustomerController("src/test/resources/Cesaeland_atracoes_control.csv","src/test/resources/Cesaeland_vendas.csv");
     }
 
+    /**
+     * Test if the play time are calculated and shown correctly
+     */
     @Test
     void getPLayTimeStringTeste() {
 
@@ -31,6 +38,9 @@ class CustomerControllerTest {
         assertEquals("4:30", customerControllerControl.calcPlayTime(270) );
     }
 
+    /**
+     * Test if the function accept negative numbers and return an error
+     */
     @Test
     void getPLayTimeStringWithNegativeNumbersTeste() {
 
@@ -39,6 +49,9 @@ class CustomerControllerTest {
 
     }
 
+    /**
+     * Test if the function correctly return if the playtime is zero
+     */
     @Test
     void getPLayTimeStringWithNumberZeroTeste() {
 
@@ -47,6 +60,9 @@ class CustomerControllerTest {
 
     }
 
+    /**
+     * test if the function to get all atractions is read the file and then shown correctly
+     */
     @Test
     void getAllAtracoesTeste(){
 
@@ -59,6 +75,9 @@ class CustomerControllerTest {
         assertEquals("\u001B[0;34m7: Elevador de Servicos\t|\tTickets Adults: 10.0€ Children: 8.0€\t|\tPLaytime: 2:0\u001B[0m",testeControl);
     }
 
+    /**
+     * Test if the function throws the right exeption when the file don't exist
+     */
     @Test
     void getAllAtracoesNoFileException(){
         assertThrows(FileNotFoundException.class, () -> {customerController = new CustomerController("src/test/resources/No_File.csv","src/test/resources/Cesaeland_vendas.csv");});
