@@ -15,7 +15,7 @@ public class AdminView {
      * @throws FileNotFoundException
      */
     public AdminView() throws FileNotFoundException {
-        adminController = new AdminController();
+        adminController = new AdminController("src/Files/Cesaeland_logins.csv");
     }
 
     /**

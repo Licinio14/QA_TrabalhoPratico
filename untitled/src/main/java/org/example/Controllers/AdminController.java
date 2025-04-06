@@ -10,13 +10,15 @@ import java.io.IOException;
 public class AdminController {
 
     private VendasRepository vendasRepository;
+    private String pathLogin;
 
     /**
      * Create admin controller with all it needs to work
      * @throws FileNotFoundException
      */
-    public AdminController() throws FileNotFoundException {
+    public AdminController(String pathLogin) throws FileNotFoundException {
         this.vendasRepository = new VendasRepository("src/main/resources/Cesaeland_vendas.csv");
+        this.pathLogin = pathLogin;
     }
 
     /**
@@ -29,6 +31,14 @@ public class AdminController {
     public boolean creatNewUser(int type, String username, String password){
         String newUser;
 
+        if (username == null || password == null) {
+            return false;
+        }
+
+        if (username.trim().isEmpty() || password.trim().isEmpty()) {
+            return false;
+        }
+
         if (type == 1){
             newUser = "\nADMIN,"+username+","+password;
         }else if (type == 2){
@@ -38,7 +48,7 @@ public class AdminController {
         }
 
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("src/Files/Cesaeland_logins.csv", true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(this.pathLogin, true));
             bw.write(newUser);
             bw.close();
         } catch (IOException e) {

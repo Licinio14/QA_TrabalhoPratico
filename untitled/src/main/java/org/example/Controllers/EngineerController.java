@@ -19,9 +19,9 @@ public class EngineerController {
      * Create a engineer controller with all it needs to work
      * @throws FileNotFoundException
      */
-    public EngineerController() throws FileNotFoundException {
-        this.atracoesRepository = new AtracoesRepository("src/main/resources/Cesaeland_atracoes.csv");
-        this.vendasRepository = new VendasRepository("src/main/resources/Cesaeland_vendas.csv");
+    public EngineerController(String pathToAtracoes, String pathToVendas) throws FileNotFoundException {
+        this.atracoesRepository = new AtracoesRepository(pathToAtracoes);
+        this.vendasRepository = new VendasRepository(pathToVendas);
     }
 
     /**

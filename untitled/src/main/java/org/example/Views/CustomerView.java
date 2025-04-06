@@ -16,7 +16,7 @@ public class CustomerView {
      * @throws FileNotFoundException
      */
     public CustomerView() throws FileNotFoundException {
-        this.customerController = new CustomerController();
+        this.customerController = new CustomerController("src/main/resources/Cesaeland_atracoes.csv","src/main/resources/Cesaeland_vendas.csv");
     }
 
     /**
@@ -38,10 +38,10 @@ public class CustomerView {
             switch (customerOption){
                 case 1:
                     Colors.Clear();
-                    ArrayList<Atracoes> attList = customerController.getAllAtractions();
+                    ArrayList<String> attList = customerController.getAllAtractions();
                     System.out.println(Colors.GREEN + "********** Attractions List **********\n" + Colors.RESET);
-                    for (Atracoes selectedAt : attList){
-                        System.out.println(Colors.BLUE + selectedAt.getId() + ": " + selectedAt.getName()+ "\t|\tTickets Adults: " + selectedAt.getPriceAdult() + "€ Children: " + selectedAt.getPriceChild() + "€\t|\tPLaytime: " + customerController.calcPlayTime(selectedAt.getSeconds()) + Colors.RESET);
+                    for (String line : attList){
+                        System.out.println(line);
                     }
                     System.out.println();
                     break;

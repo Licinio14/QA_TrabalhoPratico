@@ -15,7 +15,7 @@ public class EngineerView {
      * @throws FileNotFoundException
      */
     public EngineerView() throws FileNotFoundException {
-        this.engineerController = new EngineerController();
+        this.engineerController = new EngineerController("src/main/resources/Cesaeland_atracoes.csv","src/main/resources/Cesaeland_vendas.csv");
     }
 
     /**

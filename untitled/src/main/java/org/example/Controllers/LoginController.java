@@ -13,8 +13,8 @@ public class LoginController {
      * Create a login controller with all it needs to work
      * @throws FileNotFoundException
      */
-    public LoginController() throws FileNotFoundException {
-        userRepository = new UserRepository("src/main/resources/Cesaeland_logins.csv");
+    public LoginController(String pathLogin) throws FileNotFoundException {
+        userRepository = new UserRepository(pathLogin);
     }
 
     /**
